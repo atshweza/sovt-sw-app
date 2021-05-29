@@ -1,28 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import SimpleCard from './components/exampleCard';
+import  Home from "./pages/home";
+import Details  from "./pages/details";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Congratulations! Your App is live. Start working.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+    <Switch>
+        <Route path="/charactor/details" component={Details} />
+        <Route exact path="/" component={Home} />
+    </Switch>
+  </>
   );
 }
 
 export default App;
- 

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
-import theme from './theme';
+import { responsiveTheme } from './utils/responsiveTheme';
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom';
 import configureStore from './store/store';
@@ -12,7 +12,7 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={responsiveTheme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
       <Router>
