@@ -4,12 +4,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { responsiveTheme } from "./utils/responsiveTheme";
-import { StoreProvider } from "easy-peasy";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import store from "./store/store";
+import configureStore from "./store/store";
+
+const store = configureStore();
 
 ReactDOM.render(
-  <StoreProvider store={store}>
+  <Provider store={store}>
     <ThemeProvider theme={responsiveTheme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
@@ -17,6 +19,6 @@ ReactDOM.render(
         <App />
       </Router>
     </ThemeProvider>
-  </StoreProvider>,
+  </Provider>,
   document.querySelector("#root")
 );
