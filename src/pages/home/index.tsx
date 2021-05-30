@@ -14,12 +14,8 @@ import { PAGE_TITLE_HOME, FOOTER_TEXT } from "../../utils/constants";
 import { PEOPLE_QUERY } from "../../graphQL/queries";
 import CharactorsPage from "../../components/charactorsPage";
 import LoadingIndicator from "../../components/loadingIndicator";
-// import { useStoreActions, useStore } from "../../hooks/hooks";
 
 const Home: FC<{}> = (): ReactElement => {
-  // const search = useStoreActions((actions) => actions.search);
-  // const selectPage = useStoreActions((actions) => actions.selectPage);
-  // const selectedPage = useStore((state) => state.selectedPage);
   const [selectedPage, setSelectPage] = useState(1);
   const { loading, data, error } = useQuery(PEOPLE_QUERY, {
     variables: { page: selectedPage },
@@ -27,11 +23,10 @@ const Home: FC<{}> = (): ReactElement => {
   const history = useHistory();
 
   const handleLearnMore = (name: string) => {
-    // search(name);
     history.push("/charactor/details");
   };
-  const handleSelectPage = (page: number) => {
-    setSelectPage(page);
+  const handleSelectPage = (pageNumber: number) => {
+    setSelectPage(pageNumber);
   };
   return (
     <div>

@@ -1,7 +1,7 @@
 import { createTypedHooks } from "easy-peasy";
-import { StoreModel } from "../models/store.model";
+import { StarWarsModel } from "../models/store.model";
 
 const { useStoreActions, useStoreDispatch, useStore } =
-  createTypedHooks<StoreModel>();
+  createTypedHooks<StarWarsModel>();
 
 export { useStoreActions, useStoreDispatch, useStore };
