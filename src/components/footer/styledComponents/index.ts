@@ -11,6 +11,7 @@ const StyledFooter = styled.div`
   color: ${({ theme }) => theme.colors.yellow};
   div {
     margin:auto;
+    padding:${calculateRem(10)};
     text-align: center;
   }
 `;
