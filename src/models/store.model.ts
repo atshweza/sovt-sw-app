@@ -1,5 +1,3 @@
-import { Action } from "easy-peasy";
-
 interface Search {
   text: string;
 }
@@ -8,7 +6,7 @@ interface Page {
 }
 export interface StarWarsModel {
   searchText: Search;
-  search: Action<StarWarsModel, Search>;
+  // search: Action<StarWarsModel, Search>;
   selectedPage: Page;
-  select: Action<StarWarsModel, Page>;
+  // select: Action<StarWarsModel, Page>;
 }

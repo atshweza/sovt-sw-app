@@ -7,17 +7,19 @@
 import React, { FC, ReactElement, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useQuery } from "@apollo/react-hooks";
+import { useRecoilValue } from "recoil";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { FOOTER_TEXT, PAGE_TITLE_DETAIL } from "../../utils/constants";
 import { FIND_PERSON_QUERY } from "../../graphQL/queries";
 import CharactorDetail from "../../components/charactorDetail";
-import { useStore } from "../../hooks/hooks";
 import LoadingIndicator from "../../components/loadingIndicator";
 
+import { searchText as searchTextAtom } from "../../atoms/atoms";
+
 const Details: FC<{}> = (): ReactElement => {
-  // const searchText = useStore((state) => state.search.searchText);
-  const [selectedCharactor] = useState("Luke Skywalker");
+  const selectedCharactor = useRecoilValue(searchTextAtom);
+
   const { loading, data, error } = useQuery(FIND_PERSON_QUERY, {
     variables: { name: selectedCharactor },
   });

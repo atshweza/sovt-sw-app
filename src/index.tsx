@@ -6,6 +6,7 @@ import App from "./App";
 import { responsiveTheme } from "./utils/responsiveTheme";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import configureStore from "./store/store";
 
 const store = configureStore();
@@ -16,7 +17,9 @@ ReactDOM.render(
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <Router>
-        <App />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
       </Router>
     </ThemeProvider>
   </Provider>,
