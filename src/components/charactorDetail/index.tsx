@@ -5,6 +5,7 @@
  */
 
 import React, { FC, ReactElement } from "react";
+import Button from "@material-ui/core/Button";
 import {
   StyledCharactorDetail,
   StyledCharactorInfo,
@@ -12,11 +13,13 @@ import {
   StyledHomeworldInfo,
   StyledCharactorInfoBlock,
   StyledHomeworldImage,
+  StyledActions,
 } from "./styledComponents";
 import Planet from "../../assets/spin.gif";
 
-const CharactorDetail: FC<{ charactor: any }> = ({
+const CharactorDetail: FC<{ charactor: any; onGoHome: Function }> = ({
   charactor,
+  onGoHome,
 }): ReactElement => {
   return (
     <StyledCharactorDetail>
@@ -24,7 +27,7 @@ const CharactorDetail: FC<{ charactor: any }> = ({
         <>
           <StyledCharactorInfo>
             <StyledCharactorInfoHeader>
-              <h2>{charactor.name}</h2>
+              <h2>Charactor - {charactor.name}</h2>
             </StyledCharactorInfoHeader>
             <StyledCharactorInfoBlock>
               <span>Name</span>
@@ -45,7 +48,7 @@ const CharactorDetail: FC<{ charactor: any }> = ({
           </StyledCharactorInfo>
           <StyledHomeworldInfo>
             <StyledCharactorInfoHeader>
-              <h2>{charactor.homeworld.name}</h2>
+              <h2>Planet - {charactor.homeworld.name}</h2>
             </StyledCharactorInfoHeader>
             <StyledHomeworldImage src={Planet} alt="Home planet" />
             <div>
@@ -71,6 +74,11 @@ const CharactorDetail: FC<{ charactor: any }> = ({
               </StyledCharactorInfoBlock>
             </div>
           </StyledHomeworldInfo>
+          <StyledActions>
+            <Button size="small" onClick={() => onGoHome()}>
+              Back
+            </Button>
+          </StyledActions>
         </>
       )}
       {!charactor && <h2>Charactor not found</h2>}

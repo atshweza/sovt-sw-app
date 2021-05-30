@@ -13,9 +13,9 @@ export const responsiveTheme = {
     huge: 1920,
   },
   colors: {
-    white: '#ffffff',
-    black: '#000000',
-    lightBlack: '#333130',
-    yellow: '#f9d71c',
+    white: "#ffffff",
+    black: "#000000",
+    lightBlack: "#333130",
+    yellow: "#f9d71c",
   },
 };

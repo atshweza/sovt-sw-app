@@ -12,6 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { StyledOverviewCard } from "./styledComponents";
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -21,6 +22,10 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
+  },
+  actions: {
+    display: "flex",
+    alignItems: "right",
   },
 });
 const OverviewCard: FC<{ name: String; onLeanMore: Function }> = ({
@@ -36,7 +41,7 @@ const OverviewCard: FC<{ name: String; onLeanMore: Function }> = ({
             {name}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions style={{ width: "100%", justifyContent: "flex-end" }}>
           <Button size="small" onClick={() => onLeanMore(name)}>
             Learn More...
           </Button>

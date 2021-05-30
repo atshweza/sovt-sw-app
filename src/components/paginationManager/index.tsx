@@ -15,9 +15,17 @@ const PaginationManager: FC<{
     let content = [];
     for (let i = 1; i <= pages; i++) {
       content.push(
-        <a key={i} onClick={() => onSelectPage(i)}>
-          {i}
-        </a>
+        currentPage === i ? (
+          <span>
+            <a key={i} onClick={() => onSelectPage(i)}>
+              {i}
+            </a>
+          </span>
+        ) : (
+          <a key={i} onClick={() => onSelectPage(i)}>
+            {i}
+          </a>
+        )
       );
     }
     return content;

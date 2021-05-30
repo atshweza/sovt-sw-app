@@ -4,7 +4,7 @@
  *
  */
 
-import React, { FC, ReactElement, useState, useEffect } from "react";
+import React, { FC, ReactElement } from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { useRecoilState } from "recoil";
@@ -33,6 +33,9 @@ const Home: FC<{}> = (): ReactElement => {
     setUserSearchText(name);
     history.push("/charactor/details");
   };
+  const handleGoHome = () => {
+    history.push("/");
+  };
   const handleSelectPage = (pageNumber: number) => {
     setUserSelectedPage(pageNumber);
   };
@@ -42,7 +45,7 @@ const Home: FC<{}> = (): ReactElement => {
         <title>Home</title>
         <meta name="description" content="Description of Home" />
       </Helmet>
-      <Header title={PAGE_TITLE_HOME} />
+      <Header title={PAGE_TITLE_HOME} onGoHome={handleGoHome} />
       {error && <h2> Error retrieving Charactor/s</h2>}
       {loading && <LoadingIndicator />}
       {data && (

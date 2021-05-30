@@ -18,9 +18,17 @@ const StyledCharactorInfoHeader = styled.div`
 `;
 const StyledCharactorInfo = styled.div``;
 const StyledHomeworldInfo = styled.div``;
+const StyledActions = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  .MuiButtonBase-root {
+    background-color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.yellow};
+  }
+`;
 const StyledCharactorInfoBlock = styled.div`
-  display: grid;
-  grid-template-row: auto;
+  display: flex;
   font-size: ${calculateRem(16)};
   span:first-child {
     font-weight: bold;
@@ -28,6 +36,7 @@ const StyledCharactorInfoBlock = styled.div`
   span {
     padding: ${calculateRem(5)};
     text-align: left;
+    flex: 1;
   }
 `;
 const StyledHomeworldImage = styled.img`
@@ -42,4 +51,5 @@ export {
   StyledCharactorInfo,
   StyledHomeworldInfo,
   StyledHomeworldImage,
+  StyledActions,
 };

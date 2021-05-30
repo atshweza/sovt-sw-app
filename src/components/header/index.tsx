@@ -14,10 +14,13 @@ import AppIcon from "../../assets/logo.svg";
 
 const Header: FC<{
   title: string;
-}> = ({ title }): ReactElement => {
+  onGoHome: Function;
+}> = ({ title, onGoHome }): ReactElement => {
   return (
     <StyledHeader>
-      <StyledHeaderLogo src={AppIcon} alt="Star wars logo" />
+      <div onClick={() => onGoHome()}>
+        <StyledHeaderLogo src={AppIcon} alt="Star wars logo" />
+      </div>
       <StyledHeaderTitile>{title}</StyledHeaderTitile>
     </StyledHeader>
   );

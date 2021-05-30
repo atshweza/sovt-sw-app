@@ -8,6 +8,15 @@ const StyledPaginationManager = styled.div`
     cursor: pointer;
     font-style: bold;
   }
+  span {
+    background-color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.yellow};
+    border-radius: ${calculateRem(10)};
+    padding: ${calculateRem(5)};
+    a {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export { StyledPaginationManager };
