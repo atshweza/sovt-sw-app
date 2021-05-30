@@ -1,16 +1,8 @@
-// import { Action } from "easy-peasy";
+import { Action } from "easy-peasy";
 
-// type SearchModel = {
-//   searchText: string;
-//   search: Action<SearchModel, string>;
-// };
-
-// type SelectPageModel = {
-//   selectedPage: number;
-//   select: Action<SelectPageModel, number>;
-// };
-
-// export type StoreModel = {
-//   page: SelectPageModel;
-//   search: SearchModel;
-// };
+export type StoreModel = {
+  selectedPage: number;
+  searchText: string;
+  selectPage: Action<StoreModel, number>;
+  search: Action<StoreModel, string>;
+};
