@@ -48,7 +48,7 @@ const CharactorDetail: FC<{ charactor: any; onGoHome: Function }> = ({
           </StyledCharactorInfo>
           <StyledHomeworldInfo>
             <StyledCharactorInfoHeader>
-              <h2>Planet - {charactor.homeworld.name}</h2>
+              <h2>Home Planet - {charactor.homeworld.name}</h2>
             </StyledCharactorInfoHeader>
             <StyledHomeworldImage src={Planet} alt="Home planet" />
             <div>

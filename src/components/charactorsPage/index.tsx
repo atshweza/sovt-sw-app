@@ -22,9 +22,11 @@ const CharactorsPage: FC<{
     <StyledCharactorsPage>
       <StyledCharactoBanner src={CharactorBanner} alt="Star wars banner" />
       {pageData.people.map((person: Person) => (
-        <>
-          <OverviewCard name={person.name} onLeanMore={onLearnMore} />
-        </>
+        <OverviewCard
+          key={person.name}
+          name={person.name}
+          onLeanMore={onLearnMore}
+        />
       ))}
       <PaginationManager
         numberOfPages={pageData.numberOfPages}
