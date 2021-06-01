@@ -5,34 +5,44 @@
  */
 
 import React, { FC, ReactElement } from "react";
-import PageData from "../../models/pageData.model";
+import { useQuery } from "@apollo/react-hooks";
 import Person from "../../models/person.model";
 import OverviewCard from "../overviewCard";
 import PaginationManager from "../paginationManager";
 import { StyledCharactorsPage, StyledCharactoBanner } from "./styledComponents";
 import CharactorBanner from "../../assets/charactors.jpeg";
+import LoadingIndicator from "../../components/loadingIndicator";
+import { PEOPLE_QUERY } from "../../graphQL/queries";
 
 const CharactorsPage: FC<{
-  pageData: PageData;
   currentPage: number;
   onLearnMore: Function;
   onSelectPage: Function;
-}> = ({ pageData, currentPage, onLearnMore, onSelectPage }): ReactElement => {
+}> = ({ currentPage, onLearnMore, onSelectPage }): ReactElement => {
+  const { loading, data, error } = useQuery(PEOPLE_QUERY, {
+    variables: { page: currentPage },
+  });
   return (
     <StyledCharactorsPage>
       <StyledCharactoBanner src={CharactorBanner} alt="Star wars banner" />
-      {pageData.people.map((person: Person) => (
-        <OverviewCard
-          key={person.name}
-          name={person.name}
-          onLeanMore={onLearnMore}
-        />
-      ))}
-      <PaginationManager
-        numberOfPages={pageData.numberOfPages}
-        currentPage={currentPage}
-        onSelectPage={onSelectPage}
-      />
+      {data && (
+        <>
+          {data.people.people.map((person: Person) => (
+            <OverviewCard
+              key={person.name}
+              name={person.name}
+              onLeanMore={onLearnMore}
+            />
+          ))}
+          <PaginationManager
+            numberOfPages={data.people.numberOfPages}
+            currentPage={currentPage}
+            onSelectPage={onSelectPage}
+          />
+        </>
+      )}
+      {error && <h2> Error retrieving Charactor/s</h2>}
+      {loading && <LoadingIndicator />}
     </StyledCharactorsPage>
   );
 };
