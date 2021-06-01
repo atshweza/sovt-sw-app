@@ -13,63 +13,44 @@ import Details from "../index";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import LoadingIndicator from "../../../components/loadingIndicator";
-import { PEOPLE_QUERY } from "../../../graphQL/queries";
+import { FIND_PERSON_QUERY } from "../../../graphQL/queries";
 import { responsiveTheme } from "../../../utils/responsiveTheme";
 
 configure({ adapter: new Adapter() });
 const charactorMocks = [
   {
     request: {
-      query: PEOPLE_QUERY,
-      variables: { page: 1 },
+      query: FIND_PERSON_QUERY,
+      variables: { name: "Luke Skywalker" },
     },
     result: {
-      personByName: {},
+      data: {
+        personByName: {
+          name: "Luke Skywalker",
+          height: "172",
+          mass: "77",
+          gender: "male",
+          homeworld: {
+            name: "Tatooine",
+            rotationPeriod: "23",
+            terrain: "desert",
+            climate: "arid",
+            population: "200000",
+          },
+        },
+      },
     },
-  },
-];
-
-const errorMocks = [
-  {
-    request: {
-      query: PEOPLE_QUERY,
-      variables: { page: 1 },
-    },
-    error: new Error("Network error"),
   },
 ];
 
 afterEach(cleanup);
-test("render detail with loader when fetching data", async () => {
+test("render detail with loader state initially", async () => {
   let wrapper;
   await act(() => {
     wrapper = mount(
       <ThemeProvider theme={responsiveTheme}>
         <RecoilRoot>
           <MockedProvider addTypename={false} mocks={charactorMocks}>
-            <Details />
-          </MockedProvider>
-        </RecoilRoot>
-      </ThemeProvider>
-    );
-  });
-  await act(() => wait(0));
-  expect(
-    wrapper.containsAllMatchingElements([
-      <Header title="Charactor Detail"></Header>,
-      <LoadingIndicator></LoadingIndicator>,
-      <Footer title="2021 May the Force be with you. by Akho Tshweza"></Footer>,
-    ])
-  ).toBe(true);
-});
-
-test("render details with error if data fetch fails", async () => {
-  let wrapper;
-  await act(() => {
-    wrapper = mount(
-      <ThemeProvider theme={responsiveTheme}>
-        <RecoilRoot>
-          <MockedProvider addTypename={false} mocks={errorMocks}>
             <Details />
           </MockedProvider>
         </RecoilRoot>
