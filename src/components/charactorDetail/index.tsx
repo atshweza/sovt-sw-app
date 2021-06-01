@@ -27,7 +27,7 @@ const CharactorDetail: FC<{ selectedCharactor: string; onGoHome: Function }> =
     });
     return (
       <StyledCharactorDetail>
-        {data && (
+        {data && data.personByName && (
           <>
             <StyledCharactorInfo>
               <StyledCharactorInfoHeader>
@@ -86,6 +86,7 @@ const CharactorDetail: FC<{ selectedCharactor: string; onGoHome: Function }> =
           </>
         )}
         {error && <h2> Error retrieving Charactor Details</h2>}
+        {data && !data.personByName && <h2>Charactor not found</h2>}
         {loading && <LoadingIndicator />}
       </StyledCharactorDetail>
     );
