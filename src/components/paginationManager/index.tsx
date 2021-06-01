@@ -22,10 +22,8 @@ const PaginationManager: FC<{
     for (let i = 1; i <= pages; i++) {
       content.push(
         currentPage === i ? (
-          <span>
-            <a key={i} onClick={() => onSelectPage(i)}>
-              {i}
-            </a>
+          <span key={i}>
+            <a onClick={() => onSelectPage(i)}>{i}</a>
           </span>
         ) : (
           <a key={i} onClick={() => onSelectPage(i)}>

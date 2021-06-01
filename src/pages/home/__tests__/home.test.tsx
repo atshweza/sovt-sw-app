@@ -24,13 +24,31 @@ const charactorsMocks = [
       variables: { page: 1 },
     },
     result: {
-      people: {},
+      data: {
+        people: {
+          numberOfPages: 1,
+          hasNextPage: true,
+          hasPreviousPage: false,
+          people: [
+            {
+              name: "Luke Skywalker",
+            },
+            {
+              name: "C-3PO",
+            },
+            {
+              name: "R2-D2",
+            },
+          ],
+          __typename: "PaginatedResultResponese",
+        },
+      },
     },
   },
 ];
 
 afterEach(cleanup);
-test("render home with loader when fetching data", async () => {
+test("render home with loader state initially", async () => {
   let wrapper;
   await act(() => {
     wrapper = mount(
@@ -44,29 +62,6 @@ test("render home with loader when fetching data", async () => {
     );
   });
   await act(() => wait(0));
-  expect(
-    wrapper.containsAllMatchingElements([
-      <Header title="Charactors"></Header>,
-      <LoadingIndicator></LoadingIndicator>,
-      <Footer title="2021 May the Force be with you. by Akho Tshweza"></Footer>,
-    ])
-  ).toBe(true);
-});
-
-test("render home with error if data fetch fails", async () => {
-  let wrapper;
-  await act(() => {
-    wrapper = mount(
-      <ThemeProvider theme={responsiveTheme}>
-        <RecoilRoot>
-          <MockedProvider addTypename={false} mocks={charactorsMocks}>
-            <Home />
-          </MockedProvider>
-        </RecoilRoot>
-      </ThemeProvider>
-    );
-  });
-
   expect(
     wrapper.containsAllMatchingElements([
       <Header title="Charactors"></Header>,
